@@ -52,7 +52,7 @@ app.get("/user/:id", (req, res) => {
 
     fs.readFile(path.join(__dirname, "public/users.json"), 'utf8', (err, data) => {
         if (err) {
-            return res.status(403).send("OPPPS! Something went wrong");
+            return res.status(500).send("OPPPS! Something went wrong");
         };
 
         data = JSON.parse(data);
