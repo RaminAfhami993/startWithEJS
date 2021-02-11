@@ -44,6 +44,26 @@ app.get('/about', (req, res) => {
             lastName: "Rezaee"
         }
     })
+});
+
+app.get("/user/:id", (req, res) => {
+    // console.log(req.params);
+    // res.send(req.params.id);
+
+    fs.readFile(path.join(__dirname, "public/users.json"), 'utf8', (err, data) => {
+        if (err) {
+            return res.status(400).send("OPPPS! Something went wrong");
+        };
+
+        data = JSON.parse(data);
+
+        user = data.find(x => x.id == req.params.id);
+
+        if (!user) return res.status(404).send("User not found!!!");
+        
+        res.render('pages/home', user)
+    })
+
 })
 
 app.listen(5005);
