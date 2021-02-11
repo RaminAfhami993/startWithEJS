@@ -66,5 +66,11 @@ app.get("/user/:id", (req, res) => {
 
 })
 
+app.post('/user', (req, res) => {
+    res.status(201).send({
+        msg: "Created successfully."
+    })
+})
+
 app.listen(5005);
 
