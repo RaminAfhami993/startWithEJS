@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 
-router.use('/', logger1)
 router.get('/articles', (req, res) => {
     res.send("get all")
 })
