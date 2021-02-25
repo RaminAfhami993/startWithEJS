@@ -7,14 +7,35 @@ const logger = require('../tools/logger');
 const User = require('../models/user');
 
 
-// fs.readFile('my.txt', function(err, data) {
+const newUser = new User({
+    age: 20,
+    name: "Mohammad",
+    mobile: "091212345610",
+});
 
+
+
+newUser.save(function(err, user) {
+    if (err) return console.log(err.message);
+    console.log(user)
+})
+
+// User.find({}, function(err, users) {
+//     if (err) return console.log(err);
+//     console.log(users)
 // })
 
-User.find({}, function(err, users) {
-    if (err) return console.log(err);
-    console.log(users)
-})
+// User.updateOne({name: "Ali"}, {age: 30}, function(err, user) {
+//     if (err) return console.log(err);
+//     console.log(user)
+// })
+
+// User.deleteOne({name: "Ali"}, function(err, user) {
+//     if (err) return console.log(err);
+//     console.log(user)
+// })
+
+
 
 
 
