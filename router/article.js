@@ -1,17 +1,37 @@
 const express = require('express');
 const router = express.Router();
 
+const generalTools = require('../tools/general-tools')
+
+
 
 router.get('/articles', (req, res) => {
-    res.send("get all")
+
+    let a = 1;
+
+    let b = a;
+
+    for (let index = 0; index < 10; index++) {
+        let a = 1;
+
+        let b = a;
+        
+    }
+
+    let xy = 1;
+
+    const x = generalTools.generateRandomNumber(4);
+
+    res.send(`get all ${x} articles`)
 })
 
 router.get('/article/:id', (req, res) => {
-    res.send("get single")
+    res.send(req.params.id)
 })
 
 router.post('/article', (req, res) => {
-    res.send("create")
+
+    res.json(req.body)
 })
 
 router.delete('/article', (req, res) => {

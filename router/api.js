@@ -1,19 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const article = require('./article')
-const blogger = require('./blogger')
-const comment = require('./comment')
+const article = require('./article');
+const blogger = require('./blogger');
+const comment = require('./comment');
+const logger = require('../tools/logger');
+const User = require('../models/user');
+
+
+// fs.readFile('my.txt', function(err, data) {
+
+// })
+
+User.find({}, function(err, users) {
+    if (err) return console.log(err);
+    console.log(users)
+})
 
 
 
-function logger1(req, res, next) {
-    console.log(req.url);
 
-    res.send("middle")
-};
+
+
+
+
+
+
+
+
 
 router.use('/blogger', blogger)
-router.use('/article', article)
+router.use('/article', logger, article)
 router.use('/comment', comment)
 
 
@@ -35,18 +51,11 @@ router.use('/comment', comment)
 
 
 
-function logger() {
-    return function (req, res, next) {
-        console.log(req.url);
-        next()
-    }
-};
 
 
 
 
-
-router.get('/ejs', logger1, logger(),(req, res) => {
+router.get('/ejs',(req, res) => {
 
     res.render('index.ejs', {
         firstName: "Reza",
@@ -107,7 +116,7 @@ router.get("/user/:id", (req, res) => {
 
 })
 
-router.get('/user', logger(), (req, res) => {
+router.get('/user', (req, res) => {
     res.status(201).send({
         msg: "Created successfully."
     })
